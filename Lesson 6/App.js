@@ -43,7 +43,7 @@ function clear(){
 function init(){
 // item moves to random position
 itemX = Math.floor(Math.random()* (WIDTH - itemS));
-itemy = Math.floor(Math.random()* (HEIGHT - itemS));
+itemY = Math.floor(Math.random()* (HEIGHT - itemS));
 
 
 //wait for keyboard press
@@ -58,15 +58,15 @@ function keydownControl(e){
 	if(e.keyCode == 37){
 		mx= -4;
 		my= 0;
-	}else if(e.keycode == 38){
+	} else if(e.keyCode == 38){
 
 		mx=0;
 		my=-4
-	}else if(e.keycode == 39){
+	}else if(e.keyCode == 39){
 
 		mx=4;
 		my=0;
-	}else if(e.keycode == 40){
+	}else if(e.keyCode == 40){
 
 		mx=0;
 		my=4;
@@ -109,8 +109,8 @@ function collisionCheck(){
 function collisionHandle(){
 	if(collision){
 
-	itemX = Math.floor(Math.random()*(WIDTH-item));
-	itemY = Math.floor(Math.random()*(HEIGHT-item));
+	itemX = Math.floor(Math.random()*(WIDTH-itemS));
+	itemY = Math.floor(Math.random()*(HEIGHT-itemS));
 
 	score += 1;
 	document.getElementById("score").innerHTML = "Score:"+ score;
