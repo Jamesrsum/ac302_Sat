@@ -105,7 +105,7 @@ function update(){
 	game.physics.arcade.collide(enemy1, platforms);
 	game.physics.arcade.collide(stars, platforms);
 	game.physics.arcade.collide(firstaids, platforms);
-	game.physics.arcade.collide(diamond, platforms);
+	game.physics.arcade.collide(diamonds, platforms);
 
 	//player still if no events
 	player.body.velocity.x = 0;
