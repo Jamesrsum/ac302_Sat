@@ -10,6 +10,7 @@ function preload(){
 	game.load.image('star', 'assets/star.png');
 	game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 	game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
+	game.load.image('firstaid','assets/firstaid.png');
 
 }
 
@@ -79,6 +80,14 @@ function create(){
 		star.body.bounce.y = 0.7 + Math.random()*0.2;
 	}
 
+firstaids = game.add.physicsGroup();
+	firstaids.enableBody = true;
+	for(var i = 0; i < 2; i++){
+		var firstaid = stars.create(i*70, 0, 'firstaid');
+		firstaid.body.gravity.y = 200;
+		firstaid.body.bounce.y = 0.7 + Math.random()*0.2;
+			}
+
 	cursors = game.input.keyboard.createCursorKeys();
 }
 
@@ -86,13 +95,14 @@ function update(){
 	game.physics.arcade.collide(player, platforms);
 	game.physics.arcade.collide(enemy1, platforms);
 	game.physics.arcade.collide(stars, platforms);
+	game.physics.arcade.collide(firstaid, platforms);
 
 	//player still if no events
 	player.body.velocity.x = 0;
 
 	if(cursors.left.isDown){
 		player.animations.play('left');
-		player.body.velocity.x = -150;7
+		player.body.velocity.x = -15 0;7
 	} else if(cursors.right.isDown){
 		player.animations.play('right');
 		player.body.velocity.x = 150;
@@ -108,6 +118,8 @@ function update(){
 
 	game.physics.arcade.overlap(player,stars, collectStar);
 	game.physics.arcade.overlap(player,enemy1,loseLife);
+	game.physics.arcade.overlap(player,firstaid,getLife);
+
 
 	moveEnemy();
 	if(life <= 0 ){
@@ -147,6 +159,11 @@ function moveEnemy(){
 	}else if(enemy1.x <410){
 	enemy1.animations.play('right');
 	enemy1.body.velocity. x = 120;
+	}
+
+	function getLife(player,firstaid){
+		life += 1;
+	lifenumber.setText(life);
 	}
 
 }
