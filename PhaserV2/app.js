@@ -161,14 +161,16 @@ function moveEnemy(){
 	enemy1.body.velocity. x = 120;
 	}
 
-	function getLife(player,firstaid){
-		life += 1;
-	lifenumber.setText(life);
-	}
+	
 
 }
 
-
+function getLife(player,firstaid){
+		life += 1;
+	lifenumber.setText(life);
+	firstaid.kill();
+	firstaid.reset(Math.random()*750, 0);
+	}
 
 
 
