@@ -11,6 +11,7 @@ function preload(){
 	game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 	game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
 	game.load.image('firstaid','assets/firstaid.png');
+	game.load.image('diamond', 'assets/diamond.png');
 
 }
 
@@ -88,6 +89,14 @@ firstaids = game.add.physicsGroup();
 		firstaid.body.bounce.y = 0.7 + Math.random()*0.2;
 			}
 
+			diamonds = game.add.physicsGroup();
+	diamonds.enableBody = true;
+	for(var i = 0; i < 3; i++){
+		var diamond = diamonds.create(i*70, 0, 'diamond');
+		star.body.gravity.y = 200;
+		star.body.bounce.y = 0.7 + Math.random()*0.2;
+	}
+
 	cursors = game.input.keyboard.createCursorKeys();
 }
 
@@ -96,6 +105,7 @@ function update(){
 	game.physics.arcade.collide(enemy1, platforms);
 	game.physics.arcade.collide(stars, platforms);
 	game.physics.arcade.collide(firstaids, platforms);
+	game.physics.arcade.collide(diamond, platforms);
 
 	//player still if no events
 	player.body.velocity.x = 0;
@@ -168,8 +178,16 @@ function moveEnemy(){
 function getLife(player,firstaid){
     life += 1;
 	lifenumber.setText(life);
+	
 	firstaid.kill();
 	firstaid.reset(Math.random()*750, 0);
+	}
+
+	function collectDiamond(player,diamond){
+		score += 10;
+scorenumber.setText(score);
+diamond.kill();
+diamond.reset(Math.random()*750, 0);
 	}
 
 
